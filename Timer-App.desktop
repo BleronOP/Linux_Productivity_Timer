@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Timer App
+Comment=Starte die Timer App mit einem Klick
+Exec=bash -c '"$(dirname "%k")/start_timer_app.sh"'
+Path=.
+Terminal=false
+Categories=Utility;

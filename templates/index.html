@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Timer App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <h1>Timer App</h1>
+      <p class="subtitle">Windows-inspirierter Timer für Linux</p>
+
+      <button id="newTimerBtn" class="primary">+ Neuer Timer</button>
+
+      <section class="preset-block">
+        <h2>Schnellstart</h2>
+        <div class="presets">
+          <button class="preset" data-minutes="1">1 Min</button>
+          <button class="preset" data-minutes="5">5 Min</button>
+          <button class="preset" data-minutes="10">10 Min</button>
+          <button class="preset" data-minutes="25">25 Min</button>
+          <button class="preset" data-minutes="45">45 Min</button>
+        </div>
+      </section>
+    </aside>
+
+    <main class="content">
+      <header class="content-header">
+        <h2>Meine Timer</h2>
+        <p id="statusText">Bereit</p>
+      </header>
+
+      <section id="timers" class="timer-grid"></section>
+
+      <template id="timerTemplate">
+        <article class="timer-card">
+          <div class="timer-top">
+            <h3 class="timer-title"></h3>
+            <button class="icon danger delete-btn" title="Löschen">✕</button>
+          </div>
+
+          <div class="time-readout">00:00</div>
+
+          <div class="progress-wrap">
+            <div class="progress-bar"></div>
+          </div>
+
+          <div class="timer-actions">
+            <button class="icon play-btn">Start</button>
+            <button class="icon pause-btn">Pause</button>
+            <button class="icon reset-btn">Reset</button>
+          </div>
+        </article>
+      </template>
+    </main>
+  </div>
+
+  <dialog id="createDialog">
+    <form method="dialog" id="createForm" class="dialog-form">
+      <h3>Neuen Timer erstellen</h3>
+
+      <label>
+        Name
+        <input id="nameInput" maxlength="30" placeholder="z. B. Fokus" required>
+      </label>
+
+      <div class="time-inputs">
+        <label>
+          Min
+          <input id="minutesInput" type="number" min="0" max="999" value="5" required>
+        </label>
+        <label>
+          Sek
+          <input id="secondsInput" type="number" min="0" max="59" value="0" required>
+        </label>
+      </div>
+
+      <menu>
+        <button value="cancel">Abbrechen</button>
+        <button value="default" class="primary">Speichern</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
